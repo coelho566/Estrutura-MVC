@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 
 class Core {
     
@@ -35,20 +36,23 @@ class Core {
                 
         } else {
             
-            $currentController = 'homeController';
+            $currentController = 'HomeController';
             $currentAction = 'index';
            
         }
-      
         
-        require_once 'core/controller.php';
+        $currentController = ucfirst($currentController);
 
-        if(!file_exists('controllers/'.$currentController.'.php') || !method_exists($currentController, $currentAction)) {
-            $currentController = 'notfoundController';
+        $prefix ='\Controllers\\';
+
+        if(!file_exists('Controllers/'.$currentController.'.php') || !method_exists($prefix.$currentController, $currentAction)) {
+            $currentController = 'NotfoundController';
             $currentAction = 'index';
         }
+        
+        $newConroller = $prefix.$currentController;
+        $c = new $newConroller();
 
-        $c = new $currentController();
         call_user_func_array(array($c, $currentAction), $params); // executa a action
         
     }

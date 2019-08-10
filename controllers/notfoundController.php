@@ -1,11 +1,13 @@
 <?php
+namespace Controllers;
 
-class notfoundController extends controller {
+use\Core\Controller;
+
+class NotfoundController extends Controller {
 
     public function index() {
 
-        $dados = array();
-        $this->loadTemplate('404',$dados);
+        $this->loadTemplate('404', array());
 
     }
 
