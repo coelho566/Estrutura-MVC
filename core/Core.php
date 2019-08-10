@@ -49,9 +49,9 @@ class Core {
             $currentController = 'NotfoundController';
             $currentAction = 'index';
         }
-        
-        $newConroller = $prefix.$currentController;
-        $c = new $newConroller();
+
+        $newController = $prefix.$currentController;
+        $c = new $newController();
 
         call_user_func_array(array($c, $currentAction), $params); // executa a action
         
